@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="rakutenTagManagerApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="icon" href="img/favicon.png">
+	<script src="js/libs/jquery-3.2.1.min.js"></script>
+	<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="app.js"></script>
+	<script src="libs/angular/angular-locale_pt-br.js"></script>
+	<script src="libs/angular/angular-messages.min.js"></script>
+	<script type="text/javascript" src="js/Controller/CRUDController.js"></script> 
+    <title>Register Project</title>
+</head>
+<body>
+<body ng-controller="employeeController">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-button-collapse" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+				<a href="cadastro.html">
+				<img class="img-responsive" alt="Início" src="img/logoorigem.png">
+			</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-button-collapse">
+				<ul class="nav navbar-nav navbar-right text-center">
+					<li class="col-md-4"><a href="">Sobre</a></li>
+					<li class="col-md-4"><a href="tabela.html">Tabela</a></li>
+					<li class="col-md-4 active"><a href="cadastro.html">Cadastro</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<form id="form" method="POST" action="" class="row">
+			<div class="jumbotron">
+				<h2 class="text-center text-muted">
+					<span class="glyphicon glyphicon-pencil"></span> Register Project
+				</h2>
+				<hr></hr>
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label for="name" class="col-md-4 text-right">Name <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon" id="form-usuario">
+										<i class="glyphicon glyphicon-user"></i>
+									</span>
+								<input type="text" class="form-control" id="name" name="name" placeholder="Company Name" ng-model="project.name" ng-required="true" >
+							</div>
+							<div ng-messages="name.$error">
+								<div ng-message="required && name.$dirty" class="alert alert-danger">
+									Name is Empty!
+								</div>
+							</div>  
+						</div>
+                    </div>
+                    <div class="form-group">
+						<label for="mid" class="col-md-4 text-right">MID <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<div class="input-group-addon" id="form-mid">
+									<i class="glyphicon glyphicon-tag"></i>
+								</div>
+								<input id="mid" name="mid" type="text" class="form-control" placeholder="merchandiser ID" ng-model="project.mid" ng-required="true">
+							</div>
+							<div ng-messages="form.mid.$error">
+								<div ng-message="required && form.mid.$dirty" class="alert alert-danger">
+									Set the client MID.
+								</div>
+							</div>  
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-4 text-right">Project Type <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<label class="radio-inline">
+									<input id="type" name="type" type="radio" value="1" ng-model="project.type">Implementation
+								</label>
+							<label class="radio-inline">
+									<input id="type" name="type" type="radio" value="2" ng-model="project.type">Call
+								</label>
+							<div id="alertaGenero" class="alerta">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="deadline" class="col-md-4 text-right">Deadline <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon" id="form-deadline">
+										<i class="glyphicon glyphicon-calendar"></i>
+									</span>
+								<input id="deadline" name="deadline" type="text" class="form-control" placeholder="dd/mm/yyyy" ng-model="project.deadline">
+							</div>
+							<div id="alertaDataNascimento" class="alerta">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-md-4 text-right">Contact Email <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon" id="form-email">
+									<i class="glyphicon glyphicon-envelope"></i>
+								</span>
+								<input id="email" name="email" type="email" class="form-control" placeholder="your_email@domain.com" ng-model="project.email">
+							</div>
+							<div id="alertaEmail" class="alerta">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="description" class="col-md-4 text-right">Description <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<div class="input-group">
+                                    <textarea class="form-control" rows="6" placeholder="Describe about the project's object..."></textarea>
+								<!-- <input type="text" class="form-control" id="description" name="description" placeholder="Project Description" ng-model="project.description"> -->
+							</div>
+							<div id="alertaNome" class="alerta">
+							</div>
+						</div>
+                    </div>
+					<!-- <div class="form-group">
+						<label for="contrato" class="col-md-4 text-right">Tipo de contrato <span class="text-danger">*</span>
+							</label>
+						<div class="col-md-6">
+							<div class="input-group">
+								<span class="input-group-addon">
+										<i class="glyphicon glyphicon-menu-hamburger"></i>
+									</span>
+								<select id="contrato" name="contrato" class="form-control" ng-model="project.contrato">
+										<optgroup label="Contrato">
+											<option ng-repeat="option in contratos" value="{{option.id}}">{{option.name}}</option>
+										</optgroup>
+									</select>
+							</div>
+							<div id="alertaContrato" class="alerta">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="auxilio" class="col-md-4 text-right">Benefícios
+							</label>
+							<div id="containerBeneficios" class="col-md-6">
+								<div ng-repeat="option in beneficios">
+									<label>
+										<input type="checkbox" value="{{option.id}}" ng-checked="project.beneficios.indexOf(option.id) > -1" ng-click="toggleCheckBeneficio(option)" > {{option.name}}
+									</label></br>
+								</div>
+							</div>
+						</div>
+					</div> -->
+					<div id="botoes" class="text-right col-md-10">
+						<button type="button" class="btn btn-success" id="save" name="save" ng-click="addProject(project)" ng="form.$invalid" >
+							<span class="glyphicon glyphicon-send" aria-hidden="true"></span>   Save
+						</button>
+						<button type="button" class="btn btn-default" id="cancel" name="cancel">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>   Cancel
+						</button>
+					</div>
+				</div>
+		</form>
+		</div>
+		<footer class="text-center">
+			<p>Copyright powered by Diego Mizutani &copy;2017</p>
+		</footer>
+		<!-- <script type="text/javascript" src="js/validacaoFormulario.js"></script>  -->
+		<!-- <script type="text/javascript" src="js/insereCadastroExistente.js"></script>  -->
+		<!-- <script type="text/javascript" src="js/animacao.js"></script>  -->
+		<!-- <script type="text/javascript" src="js/testeJS/testeValidacaoFormulario.js"></script>  -->
+		<!-- <script type="text/javascript" src="js/testeJS/inserirDadosParaTeste.js"></script>    -->
+</body>
+</html>
